@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 			XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
 			null
 		);
-	console.log('attributes: '+attributes.snapshotLength);
 	for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++)
 	{
 		let attribute = attributes.snapshotItem(i);

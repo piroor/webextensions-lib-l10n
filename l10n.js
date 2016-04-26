@@ -40,6 +40,6 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 	{
 		let attribute = attributes.snapshotItem(i);
 		console.log(attribute);
-		attribute.nodeValue = apply(attribute.nodeValue);
+		attribute.value = apply(attribute.value);
 	}
 });

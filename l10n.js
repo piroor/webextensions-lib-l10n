@@ -15,6 +15,15 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 		});
 	}
 
+	function $log(aMessage, ...aArgs)
+	{
+		aMessage = 'l10s ' + aMessage;
+		if (typeof log === 'function')
+			log(aMessage, ...aArgs);
+		else
+			console.log(aMessage, ...aArgs);
+	},
+
 	var texts = document.evaluate(
 			'descendant::text()[contains(self::text(), "__MSG_")]',
 			document,
@@ -38,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 	for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++)
 	{
 		let attribute = attributes.snapshotItem(i);
-		console.log(attribute);
+		$log(attribute);
 		attribute.value = apply(attribute.value);
 	}
 });

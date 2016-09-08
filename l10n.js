@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 	for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++)
 	{
 		let attribute = attributes.snapshotItem(i);
-		$log(attribute);
+		$log('apply', attribute);
 		attribute.value = apply(attribute.value);
 	}
 });

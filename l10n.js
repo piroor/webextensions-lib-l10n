@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function onReady() {
 			log(aMessage, ...aArgs);
 		else
 			console.log(aMessage, ...aArgs);
-	},
+	}
 
 	var texts = document.evaluate(
 			'descendant::text()[contains(self::text(), "__MSG_")]',

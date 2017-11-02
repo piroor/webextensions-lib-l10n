@@ -44,7 +44,7 @@ var l10n = {
 		for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++)
 		{
 			let attribute = attributes.snapshotItem(i);
-			$log('apply', attribute);
+			this.$log('apply', attribute);
 			attribute.value = this.updateString(attribute.value);
 		}
 	}

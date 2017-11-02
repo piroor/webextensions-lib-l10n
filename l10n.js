@@ -21,32 +21,32 @@ var l10n = {
 	},
 
 	updateDocument() {
-	var texts = document.evaluate(
-			'descendant::text()[contains(self::text(), "__MSG_")]',
-			document,
-			null,
-			XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-			null
-		);
-	for (let i = 0, maxi = texts.snapshotLength; i < maxi; i++)
-	{
-		let text = texts.snapshotItem(i);
-		text.nodeValue = this.updateString(text.nodeValue);
-	}
+		var texts = document.evaluate(
+				'descendant::text()[contains(self::text(), "__MSG_")]',
+				document,
+				null,
+				XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+				null
+			);
+		for (let i = 0, maxi = texts.snapshotLength; i < maxi; i++)
+		{
+			let text = texts.snapshotItem(i);
+			text.nodeValue = this.updateString(text.nodeValue);
+		}
 
-	var attributes = document.evaluate(
-			'descendant::*/attribute::*[contains(., "__MSG_")]',
-			document,
-			null,
-			XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-			null
-		);
-	for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++)
-	{
-		let attribute = attributes.snapshotItem(i);
-		$log('apply', attribute);
-		attribute.value = this.updateString(attribute.value);
-	}
+		var attributes = document.evaluate(
+				'descendant::*/attribute::*[contains(., "__MSG_")]',
+				document,
+				null,
+				XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+				null
+			);
+		for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++)
+		{
+			let attribute = attributes.snapshotItem(i);
+			$log('apply', attribute);
+			attribute.value = this.updateString(attribute.value);
+		}
 	}
 };
 

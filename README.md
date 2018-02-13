@@ -27,29 +27,29 @@ In `manifest.json`, specify to load the file `l10n.js` for your HTML pages:
 
 <script type="application/javascript" src="./l10n.js"></script>
 
-<p title="__MSG_config.enabled.tooltip__">
+<p title="__MSG_config_enabled_tooltip__">
   <label><input type="checkbox">
-         __MSG_config.enabled.label__</label></p>
-<p title="__MSG_config.advanced.tooltip__">
+         __MSG_config_enabled_label__</label></p>
+<p title="__MSG_config_advanced_tooltip__">
   <label><input type="checkbox">
-         __MSG_config.advanced__</label></p>
-<p title="__MSG_config.attributes.tooltip__">
-  <label>__MSG_config.attributes.label.before__
+         __MSG_config_advanced__</label></p>
+<p title="__MSG_config_attributes_tooltip__">
+  <label>__MSG_config_attributes_label_before__
          <input type="text">
-         __MSG_config.attributes.label.after__</label></p>
+         __MSG_config_attributes_label_after__</label></p>
 ```
 
 `_locales/en_US/messages.json` is:
 
 ~~~json
 {
-  "config.enabled.label":           { "message": "Activate basic features" },
-  "config.enabled.tooltip":         { "message": "This is for general users." },
-  "config.advanced.label":          { "message": "Activate advanced features" },
-  "config.advanced.tooltip":        { "message": "This is for power users." },
-  "config.attributes.label.before": { "message": "List of attributes:" },
-  "config.attributes.label.after":  { "message": "" }}
-  "config.attributes.tooltip":      { "message": "You can specify mutlipe items delimited with \"|\"." }
+  "config_enabled_label":           { "message": "Activate basic features" },
+  "config_enabled_tooltip":         { "message": "This is for general users." },
+  "config_advanced_label":          { "message": "Activate advanced features" },
+  "config_advanced_tooltip":        { "message": "This is for power users." },
+  "config_attributes_label_before": { "message": "List of attributes:" },
+  "config_attributes_label_after":  { "message": "" }}
+  "config_attributes_tooltip":      { "message": "You can specify mutlipe items delimited with \"|\"." }
 }
 ~~~
 

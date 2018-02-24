@@ -8,7 +8,7 @@ var l10n = {
 	updateString(aString) {
 		return aString.replace(/__MSG_(.+?)__/g, function(aMatched) {
 			var key = aMatched.slice(6, -2);
-			return chrome.i18n.getMessage(key);
+			return chrome.i18n.getMessage(key) || aMatched;
 		});
 	},
 

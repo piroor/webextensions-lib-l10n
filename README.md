@@ -65,3 +65,18 @@ ShortcutCustomizeUI.build().then(list => {
   l10n.updateDocument(); // resolve labels after initialized!
 });
 ```
+
+## Important note for blank messages
+
+This library keeps `__MSG_*__` texts as-is, if there is no effective message for the key.
+If you want to define blank message intentionally for some reasons, please put `\u200b` (`U+200B`, a zero width space) instead of blank string, like:
+
+```javascript
+{ "before_link": { "message": "For more details, see " } },
+{ "link_text":   { "message": "the API document." } }
+{ "after_link":  { "message": "\u200b" } }
+
+{ "before_link": { "message": "\u200b" } },
+{ "link_text":   { "message": "APIドキュメント" } }
+{ "after_link":  { "message": "に詳しい情報があります。" } }
+```

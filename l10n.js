@@ -8,7 +8,8 @@ var l10n = {
   updateString(aString) {
     return aString.replace(/__MSG_(.+?)__/g, (aMatched) => {
       const key = aMatched.slice(6, -2);
-      return chrome.i18n.getMessage(key) || aMatched;
+      if (typeof browser === 'undefined') return chrome.i18n.getMessage(key) || aMatched;
+      else return browser.i18n.getMessage(key) || aMatched;
     });
   },
 

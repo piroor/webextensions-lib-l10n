@@ -20,10 +20,10 @@ var l10n = {
       console.log(message, ...args);
   },
 
-  updateDocument() {
+  updateSubtree(node) {
     const texts = document.evaluate(
       'descendant::text()[contains(self::text(), "__MSG_")]',
-      document,
+      node,
       null,
       XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
       null
@@ -35,7 +35,7 @@ var l10n = {
 
     const attributes = document.evaluate(
       'descendant::*/attribute::*[contains(., "__MSG_")]',
-      document,
+      node,
       null,
       XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
       null
@@ -45,6 +45,10 @@ var l10n = {
       this.$log('apply', attribute);
       attribute.value = this.updateString(attribute.value);
     }
+  },
+
+  updateDocument() {
+    this.updateSubtree(document);
   }
 };
 

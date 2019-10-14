@@ -1,23 +1,23 @@
 /*
- license: The MIT License, Copyright (c) 2016-2018 YUKI "Piro" Hiroshi
+ license: The MIT License, Copyright (c) 2016-2019 YUKI "Piro" Hiroshi
  original:
    http://github.com/piroor/webextensions-lib-l10n
 */
 
 var l10n = {
-  updateString(aString) {
-    return aString.replace(/__MSG_(.+?)__/g, (aMatched) => {
-      const key = aMatched.slice(6, -2);
-      return chrome.i18n.getMessage(key) || aMatched;
+  updateString(string) {
+    return string.replace(/__MSG_(.+?)__/g, matched => {
+      const key = matched.slice(6, -2);
+      return chrome.i18n.getMessage(key) || matched;
     });
   },
 
-  $log(aMessage, ...aArgs) {
-    aMessage = `l10s: ${aMessage}`;
+  $log(message, ...args) {
+    message = `l10s: ${message}`;
     if (typeof window.log === 'function')
-      log(aMessage, ...aArgs);
+      log(message, ...args);
     else
-      console.log(aMessage, ...aArgs);
+      console.log(message, ...args);
   },
 
   updateDocument() {

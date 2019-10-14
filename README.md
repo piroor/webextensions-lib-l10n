@@ -66,6 +66,12 @@ ShortcutCustomizeUI.build().then(list => {
 });
 ```
 
+DOM3 XPath doesn't find shadow nodes, so you need to call `updateSubtree()` for each shadow elements like:
+
+```javascript
+lt0n.updateSubtree(shadowRoot.querySelector('.root'));
+```
+
 ## Important note for blank messages
 
 This library keeps `__MSG_*__` texts as-is, if there is no effective message for the key.

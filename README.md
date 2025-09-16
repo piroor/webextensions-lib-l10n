@@ -49,7 +49,7 @@ In `manifest.json`, specify to load the file `l10n.js` for your HTML pages:
   "config_advanced_tooltip":        { "message": "This is for power users." },
   "config_attributes_label_before": { "message": "List of attributes:" },
   "config_attributes_label_after":  { "message": "" }}
-  "config_attributes_tooltip":      { "message": "You can specify mutlipe items delimited with \"|\"." }
+  "config_attributes_tooltip":      { "message": "You can specify multiple items delimited with \"|\"." }
 }
 ~~~
 

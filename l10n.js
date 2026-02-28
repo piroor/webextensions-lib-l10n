@@ -50,7 +50,6 @@ var l10n = {
       null
     );
     for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++) {
-      const attribute = ;
       onAttributeFound(attributes.snapshotItem(i));
     }
   },

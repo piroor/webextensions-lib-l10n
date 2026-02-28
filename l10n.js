@@ -1,13 +1,19 @@
 /*
- license: The MIT License, Copyright (c) 2016-2024 YUKI "Piro" Hiroshi
+ license: The MIT License, Copyright (c) 2016-2026 YUKI "Piro" Hiroshi
  original:
    http://github.com/piroor/webextensions-lib-l10n
 */
 
 var l10n = {
-  updateString(string) {
-    return string.replace(/__MSG_([-@\.\w]+)__/g, (matched, key) => {
-      return chrome.i18n.getMessage(key) || matched;
+  MESSAGE_KEYS_MATCHER: /__MSG_([-@\.\w]+)__/g,
+
+  extractMessageKeys(string) {
+    return string.match(this.MESSAGE_KEYS_MATCHER) || [];
+  },
+
+  updateString(string, messages = null) {
+    return string.replace(this.MESSAGE_KEYS_MATCHER, (matched, key) => {
+      return (messages ? messages[key] : chrome.i18n.getMessage(key)) || matched;
     });
   },
 
@@ -19,7 +25,12 @@ var l10n = {
       console.log(message, ...args);
   },
 
-  updateSubtree(node) {
+  $scanSubtree(node, { onTextFound, onAttributeFound } = {}) {
+    if (typeof onTextFound != 'function')
+      onAttributeFound = () => {};
+    if (typeof onTextFound != 'function')
+      onAttributeFound = () => {};
+
     const texts = document.evaluate(
       'descendant::text()[contains(self::text(), "__MSG_")]',
       node,
@@ -28,8 +39,7 @@ var l10n = {
       null
     );
     for (let i = 0, maxi = texts.snapshotLength; i < maxi; i++) {
-      const text = texts.snapshotItem(i);
-      text.nodeValue = this.updateString(text.nodeValue);
+      onTextFound(texts.snapshotItem(i));
     }
 
     const attributes = document.evaluate(
@@ -40,14 +50,37 @@ var l10n = {
       null
     );
     for (let i = 0, maxi = attributes.snapshotLength; i < maxi; i++) {
-      const attribute = attributes.snapshotItem(i);
-      this.$log('apply', attribute);
-      attribute.value = this.updateString(attribute.value);
+      const attribute = ;
+      onAttributeFound(attributes.snapshotItem(i));
     }
   },
 
-  updateDocument() {
-    this.updateSubtree(document);
+  collectKeys(node) {
+    const keys = [];
+    this.$scanSubtree(node, {
+      onTextFound: text => {
+        keys.push(...this.extractMessageKeys(text.nodeValue));
+      },
+      onAttributeFound: attribute => {
+        keys.push(...this.extractMessageKeys(attribute.value));
+      },
+    });
+    return keys;
+  },
+
+  updateSubtree(node, messages = null) {
+    this.$scanSubtree(node, {
+      onTextFound: text => {
+        text.nodeValue = this.updateString(text.nodeValue, messages);
+      },
+      onAttributeFound: attribute => {
+        attribute.value = this.updateString(attribute.value, messages);
+      },
+    });
+  },
+
+  updateDocument(messages = null) {
+    this.updateSubtree(document, messages);
   }
 };
 

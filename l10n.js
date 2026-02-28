@@ -55,7 +55,7 @@ var l10n = {
     }
   },
 
-  collectKeys(node) {
+  collectUsedKeys(node) {
     const keys = [];
     this.$scanSubtree(node, {
       onTextFound: text => {

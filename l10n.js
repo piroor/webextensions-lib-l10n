@@ -8,7 +8,8 @@ var l10n = {
   MESSAGE_KEYS_MATCHER: /__MSG_([-@\.\w]+)__/g,
 
   extractMessageKeys(string) {
-    return string.match(this.MESSAGE_KEYS_MATCHER) || [];
+    return (string.match(this.MESSAGE_KEYS_MATCHER) || [])
+      .map(matched => matched.replace(this.MESSAGE_KEYS_MATCHER, (matched, key) => key));
   },
 
   updateString(string, messages = null) {
